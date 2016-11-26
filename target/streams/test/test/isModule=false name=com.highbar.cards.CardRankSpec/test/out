@@ -1,0 +1,17 @@
+[0m[[0minfo[0m] [0m[32mCardRankSpec:[0m[0m
+[0m[[0minfo[0m] [0m[32mParsing a CardRank from a String[0m[0m
+[0m[[0minfo[0m] [0m[32m- Succeeds when the input String represents a valid value[0m[0m
+[0m[[0minfo[0m] [0m[32mConverting a CardRank to a String[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'A'  represents Ace[0m[0m
+[0m[[0minfo[0m] [0m[32m- '2'  represents Two[0m[0m
+[0m[[0minfo[0m] [0m[32m- '3'  represents Three[0m[0m
+[0m[[0minfo[0m] [0m[32m- '4'  represents Four[0m[0m
+[0m[[0minfo[0m] [0m[32m- '5'  represents Five[0m[0m
+[0m[[0minfo[0m] [0m[32m- '6'  represents Six[0m[0m
+[0m[[0minfo[0m] [0m[32m- '7'  represents Seven[0m[0m
+[0m[[0minfo[0m] [0m[32m- '8'  represents Eight[0m[0m
+[0m[[0minfo[0m] [0m[32m- '9'  represents Nine[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'T' represents Ten[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'J'  represents Jack[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'Q'  represents Queen[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'K'  represents King[0m[0m

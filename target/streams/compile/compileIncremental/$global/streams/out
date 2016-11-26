@@ -1,0 +1,27 @@
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Initial source changes: [0m
+[0m[[0mdebug[0m] [0m[naha] 	removed:Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	added: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	modified: Set(/home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/StraightFlush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/HighCard.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Straight.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Flush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/CardComparators.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/DealParser.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/OmahaHiLo.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/CardRank.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/Deal.java)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated products: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] External API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Modified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial directly invalidated sources: Set(/home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/StraightFlush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/HighCard.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Straight.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Flush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/CardComparators.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/DealParser.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/OmahaHiLo.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/CardRank.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/Deal.java)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Sources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m[naha] 	product: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/StraightFlush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/HighCard.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Straight.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Flush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/CardComparators.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/DealParser.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/OmahaHiLo.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/CardRank.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/Deal.java)[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/StraightFlush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/HighCard.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Straight.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/Flush.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/CardComparators.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/DealParser.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/OmahaHiLo.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/CardRank.java, /home/gordon/Projects/Omaha/src/main/java/com/highbar/cards/poker/omahaHiLo/Deal.java)[0m
+[0m[[0minfo[0m] [0mCompiling 9 Java sources to /home/gordon/Projects/Omaha/target/scala-2.12/classes...[0m
+[0m[[0mdebug[0m] [0mAttempting to call com.sun.tools.javac.api.JavacTool@22af1e3a directly...[0m
+[0m[[0mdebug[0m] [0mJava compilation took 0.117644571 s[0m
+[0m[[0mdebug[0m] [0mJava analysis took 0.035973989 s[0m
+[0m[[0mdebug[0m] [0mJava compile + analysis took 0.154657659 s[0m
+[0m[[0mdebug[0m] [0m[naha] New invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Previously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] All newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m

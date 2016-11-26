@@ -1,0 +1,8 @@
+[0m[[0minfo[0m] [0m[32mPokerRulesSpec:[0m[0m
+[0m[[0minfo[0m] [0m[32mPoker Rankings for High Hand[0m[0m
+[0m[[0minfo[0m] [0m[33m- If two hands are the of same ranking, the winner is the one having the higher cards (pending)[0m[0m
+[0m[[0minfo[0m] [0m[33m- If two hands with the same ranking are tied after checking the higher cards, the kicker determines the winner (pending)[0m[0m
+[0m[[0minfo[0m] [0m[33m- In the event of hands being absolutely identical in ranking, it is a tie and the pot is split (pending)[0m[0m
+[0m[[0minfo[0m] [0m[33m- The suit has no impact on ranking (pending)[0m[0m
+[0m[[0minfo[0m] [0m[33m- And Ace can be used in straights as the highest card or the lowest card (pending)[0m[0m
+[0m[[0minfo[0m] [0m[33m- When two hands of 'Full House' are compared, the three of a kind are compared first (pending)[0m[0m

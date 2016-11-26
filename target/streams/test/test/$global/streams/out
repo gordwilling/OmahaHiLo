@@ -1,0 +1,25 @@
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.poker.omahiHiLo.DealParserSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.CardRankSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.CardSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.DeckSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.CardParserSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.poker.PokerRulesSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.SuitSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(com.highbar.cards.poker.CardComparatorSpec, org.scalatest.tools.Framework$$anon$1@427ae58a, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mSummary for ScalaCheck not available.[0m
+[0m[[0minfo[0m] [0mScalaTest[0m
+[0m[[0minfo[0m] [0m[36mRun completed in 911 milliseconds.[0m[0m
+[0m[[0minfo[0m] [0m[36mTotal number of tests run: 207[0m[0m
+[0m[[0minfo[0m] [0m[36mSuites: completed 8, aborted 0[0m[0m
+[0m[[0minfo[0m] [0m[36mTests: succeeded 207, failed 0, canceled 0, ignored 0, pending 6[0m[0m
+[0m[[0minfo[0m] [0m[32mAll tests passed.[0m[0m
+[0m[[0minfo[0m] [0mPassed: Total 207, Failed 0, Errors 0, Passed 207, Pending 6[0m
+[0m[[0mdebug[0m] [0mPassed tests:[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.DeckSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.CardRankSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.SuitSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.CardParserSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.CardSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.poker.PokerRulesSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.poker.CardComparatorSpec[0m
+[0m[[0mdebug[0m] [0m	com.highbar.cards.poker.omahiHiLo.DealParserSpec[0m

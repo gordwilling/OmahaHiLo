@@ -1,0 +1,34 @@
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/gordon/Projects/Omaha/target/scala-2.12/classes/com/highbar/cards/poker/CardComparators.class: stamp changed from lastModified(1480125733000) to lastModified(1480130684000)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Initial source changes: [0m
+[0m[[0mdebug[0m] [0m[naha] 	removed:Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	added: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	modified: Set(/home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/SuitSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/CardRankSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/package.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/CardComparatorSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/PokerRulesSpec.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated products: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] External API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Modified binary dependencies: Set(/home/gordon/Projects/Omaha/target/scala-2.12/classes/com/highbar/cards/poker/CardComparators.class)[0m
+[0m[[0mdebug[0m] [0m[naha] Initial directly invalidated sources: Set(/home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/SuitSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/CardRankSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/package.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/CardComparatorSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/PokerRulesSpec.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Sources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m[naha] 	product: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	binary dep: Set(/home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/CardComparatorSpec.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] 	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/SuitSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/CardRankSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/package.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/CardComparatorSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/PokerRulesSpec.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/SuitSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/CardRankSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/package.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/CardComparatorSpec.scala, /home/gordon/Projects/Omaha/src/test/scala-2.12/com/highbar/cards/poker/PokerRulesSpec.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Recompiling all 9 sources: invalidated sources (5) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 9 Scala sources to /home/gordon/Projects/Omaha/target/scala-2.12/test-classes...[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.13:component from component compiler for Scala 2.12.0[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.13:component from component compiler for Scala 2.12.0[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 416fdeaf, interfacing (CompilerInterface) with Scala compiler version 2.12.0[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/home/gordon/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.0.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/home/gordon/Projects/Omaha/target/scala-2.12/test-classes:/home/gordon/Projects/Omaha/target/scala-2.12/classes:/home/gordon/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.1.jar:/home/gordon/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.1.jar:/home/gordon/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.0.jar:/home/gordon/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.5.jar:/home/gordon/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar:/home/gordon/.ivy2/cache/org.jetbrains/annotations/jars/annotations-15.0.jar:/home/gordon/.ivy2/cache/org.scalacheck/scalacheck_2.12/jars/scalacheck_2.12-1.13.4.jar:/home/gordon/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar:/home/gordon/.ivy2/cache/com.google.guava/guava/bundles/guava-20.0.jar[0m
+[0m[[0mdebug[0m] [0mScala compilation took 20.279454743 s[0m
+[0m[[0mdebug[0m] [0m[naha] New invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Previously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] All newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m

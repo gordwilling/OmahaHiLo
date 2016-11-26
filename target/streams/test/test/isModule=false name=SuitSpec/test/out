@@ -1,0 +1,9 @@
+[0m[[0minfo[0m] [0m[32mSuitSpec:[0m[0m
+[0m[[0minfo[0m] [0m[32mParsing a Suit from a String[0m[0m
+[0m[[0minfo[0m] [0m[32m- Succeeds when the input String represents a valid value[0m[0m
+[0m[[0minfo[0m] [0m[32m- Returns an empty option when the input String does not represent a valid value[0m[0m
+[0m[[0minfo[0m] [0m[32mConverting a Suit to a String[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'c' represents Clubs[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'd' represents Diamonds[0m[0m
+[0m[[0minfo[0m] [0m[32m- 'h' represents Hearts[0m[0m
+[0m[[0minfo[0m] [0m[32m- 's' represents Spades[0m[0m
