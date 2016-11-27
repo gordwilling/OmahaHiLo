@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class ThreeOfAKind extends RankedHand {
+public final class ThreeOfAKind extends RankedHand {
 
     private List<Card> triplet;
     private List<Card> kickers;

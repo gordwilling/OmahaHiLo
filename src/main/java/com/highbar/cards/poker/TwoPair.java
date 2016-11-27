@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class TwoPair extends RankedHand {
+public final class TwoPair extends RankedHand {
 
     private List<Card> highPair;
     private List<Card> lowPair;

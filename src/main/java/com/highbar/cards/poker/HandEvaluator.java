@@ -121,8 +121,8 @@ public class HandEvaluator {
 
         List<Card> singles = flatten(groupByN.getOrDefault(1, emptyList()));
         List<List<Card>> pairs = groupByN.getOrDefault(2, emptyList());
-        List<List<Card>> triplet = groupByN.getOrDefault(3, emptyList());
-        List<List<Card>> quad = groupByN.getOrDefault(4, emptyList());
+        List<List<Card>> triplets = groupByN.getOrDefault(3, emptyList());
+        List<List<Card>> quads = groupByN.getOrDefault(4, emptyList());
 
         if (singles.size() == 5) {
             // none-of-a-kind
@@ -133,15 +133,15 @@ public class HandEvaluator {
         } else if (singles.size() == 1 && pairs.size() == 2) {
             // 2 pairs, 1 kicker
             return Optional.of(new TwoPair(pairs.get(0), pairs.get(1), singles.get(0), comparator));
-        } else if (singles.size() == 2 && triplet.size() == 1) {
+        } else if (singles.size() == 2 && triplets.size() == 1) {
             // one triplet, two kickers
-            return Optional.of(new ThreeOfAKind(triplet.get(0), singles, comparator));
-        } else if (pairs.size() == 1 && triplet.size() == 1) {
+            return Optional.of(new ThreeOfAKind(triplets.get(0), singles, comparator));
+        } else if (pairs.size() == 1 && triplets.size() == 1) {
             // one triplet, one pair
-            return Optional.of(new FullHouse(triplet.get(0), pairs.get(0), comparator));
-        } else if (singles.size() == 1 && quad.size() == 1) {
+            return Optional.of(new FullHouse(triplets.get(0), pairs.get(0), comparator));
+        } else if (singles.size() == 1 && quads.size() == 1) {
             // one quad, one kicker
-            return Optional.of(new FourOfAKind(quad.get(0), singles.get(0), comparator));
+            return Optional.of(new FourOfAKind(quads.get(0), singles.get(0), comparator));
         } else {
             throw new IllegalStateException("Reached unreachable code");
         }
