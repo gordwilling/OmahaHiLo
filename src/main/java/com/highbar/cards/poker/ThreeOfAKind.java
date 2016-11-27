@@ -9,13 +9,13 @@ import java.util.*;
 
 public class ThreeOfAKind extends RankedHand<ThreeOfAKind> {
 
-    private SortedSet<Card> triplet;
-    private SortedSet<Card> kickers;
+    private List<Card> triplet;
+    private List<Card> kickers;
 
     public ThreeOfAKind(@NotNull List<Card> triplet, @NotNull List<Card> kickers, @NotNull Comparator<Card> comparator) {
         super(HandRank.ThreeOfAKind, comparator);
-        this.triplet = new TreeSet<>(comparator);
-        this.kickers = new TreeSet<>(comparator);
+        this.triplet = new ArrayList<>();
+        this.kickers = new ArrayList<>();
         this.triplet.addAll(triplet);
         this.kickers.addAll(kickers);
     }
@@ -23,7 +23,7 @@ public class ThreeOfAKind extends RankedHand<ThreeOfAKind> {
     @Contract(pure = true)
     @Override
     public int compareTo(@NotNull ThreeOfAKind that) {
-        return compare(this.triplet.first(), that.triplet.first());
+        return compare(this.triplet.get(0), that.triplet.get(0));
     }
 
     @NotNull

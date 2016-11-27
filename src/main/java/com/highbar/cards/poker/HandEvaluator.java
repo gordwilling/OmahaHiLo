@@ -1,6 +1,7 @@
 package com.highbar.cards.poker;
 
 import com.highbar.cards.Card;
+import com.highbar.cards.CardRank;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -66,7 +67,7 @@ public class HandEvaluator {
     @NotNull
     @Contract(pure = true)
     public RankedHand rank(@NotNull Card a, @NotNull Card b, @NotNull Card c, @NotNull Card d, @NotNull Card e) {
-        SortedSet<Card> cards = emptyOrderedSet();
+        List<Card> cards = new ArrayList<>();
         cards.addAll(asList(a, b, c, d, e));
 
         Optional<? extends RankedHand> someOfAKind = someOfAKind(cards);
@@ -88,7 +89,7 @@ public class HandEvaluator {
 
     @NotNull
     @Contract(pure = true)
-    Optional<? extends RankedHand> someOfAKind(@NotNull SortedSet<Card> cards) {
+    Optional<RankedHand> someOfAKind(@NotNull List<Card> cards) {
 
         // This next statement does three things:
         //
@@ -142,30 +143,36 @@ public class HandEvaluator {
             // one quad, one kicker
             return Optional.of(new FourOfAKind(quad.get(0), singles.get(0), comparator));
         } else {
-            throw new IllegalStateException("Expected unreachable code");
+            throw new IllegalStateException("Reached unreachable code");
         }
     }
 
     @Contract(pure = true)
-    boolean isFlush(@NotNull SortedSet<Card> cards) {
-        return cards.stream().map(Card::suit).count() == 1;
+    boolean isFlush(@NotNull List<Card> cards) {
+        return cards.stream().map(Card::suit).distinct().count() == 1;
     }
 
     @Contract(pure = true)
-    boolean isStraight(@NotNull SortedSet<Card> cards) {
+    boolean isStraight(@NotNull List<Card> cards) {
         return isStraight(cards, aceHigh()) || isStraight(cards, aceLow());
     }
 
     @Contract(pure = true)
-    boolean isStraight(@NotNull SortedSet<Card> in, @NotNull Comparator<Card> comparator) {
-        SortedSet<Card> cards = new TreeSet<>(comparator);
-        cards.addAll(in);
+    boolean isStraight(@NotNull List<Card> in, @NotNull Comparator<Card> comparator) {
+        List<Card> cards = new ArrayList<>(in);
+        cards.sort(comparator);
         boolean isStraight = true;
         Iterator<Card> i = cards.iterator();
         int priorOrdinal = i.next().rank().ordinal();
         while (i.hasNext() && isStraight) {
             Card card = i.next();
-            isStraight = priorOrdinal == card.rank().ordinal() - 1;
+            // comparing the ordinal doesn't work for an Ace-high straight
+            // cheat a bit until something more elegant presents itself...
+            if (card.rank() == CardRank.Ace) {
+                isStraight = priorOrdinal == CardRank.King.ordinal();
+            } else {
+                isStraight = priorOrdinal == card.rank().ordinal() - 1;
+            }
             priorOrdinal = card.rank().ordinal();
         }
         return isStraight;
@@ -175,12 +182,5 @@ public class HandEvaluator {
     @Contract(pure = true)
     private List<Card> flatten(@NotNull List<List<Card>> cards) {
         return cards.stream().flatMap(List::stream).collect(Collectors.toList());
-    }
-
-
-    @NotNull
-    @Contract(pure = true)
-    private TreeSet<Card> emptyOrderedSet() {
-        return new TreeSet<>(comparator);
     }
 }

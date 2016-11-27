@@ -5,19 +5,17 @@ import com.highbar.cards.Cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public final class HighCard extends RankedHand<HighCard> {
 
-    private SortedSet<Card> cards;
+    private List<Card> cards;
 
-    HighCard(@NotNull Set<Card> cards, @NotNull Comparator<Card> comparator) {
+    HighCard(@NotNull List<Card> cards, @NotNull Comparator<Card> comparator) {
         super(HandRank.HighCard, comparator);
-        this.cards = new TreeSet<>(comparator);
+        this.cards = new ArrayList<>(cards);
         this.cards.addAll(cards);
+        this.cards.sort(comparator.reversed());
     }
 
     @Contract(pure = true)

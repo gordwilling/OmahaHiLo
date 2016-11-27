@@ -9,13 +9,13 @@ import java.util.*;
 
 public class FullHouse extends RankedHand<FullHouse> {
 
-    private SortedSet<Card> triplet;
-    private SortedSet<Card> pair;
+    private List<Card> triplet;
+    private List<Card> pair;
 
     public FullHouse(@NotNull List<Card> triplet, @NotNull List<Card> pair, @NotNull Comparator<Card> comparator) {
         super(HandRank.FullHouse, comparator);
-        this.triplet = new TreeSet<>(comparator);
-        this.pair = new TreeSet<>(comparator);
+        this.triplet = new ArrayList<>();
+        this.pair = new ArrayList<>();
         this.triplet.addAll(triplet);
         this.pair.addAll(pair);
     }
@@ -23,7 +23,7 @@ public class FullHouse extends RankedHand<FullHouse> {
     @Contract(pure = true)
     @Override
     public int compareTo(@NotNull FullHouse that) {
-        return compare(this.triplet.first(), that.triplet.first());
+        return compare(this.triplet.get(0), that.triplet.get(0));
     }
 
     @NotNull

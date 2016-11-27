@@ -9,12 +9,12 @@ import java.util.*;
 
 public class FourOfAKind extends RankedHand<FourOfAKind> {
 
-    private SortedSet<Card> four;
+    private List<Card> four;
     private Card kicker;
 
     public FourOfAKind(@NotNull List<Card> four, @NotNull Card kicker, @NotNull Comparator<Card> comparator) {
         super(HandRank.FourOfAKind, comparator);
-        this.four = new TreeSet<>(comparator);
+        this.four = new ArrayList<>();
         this.four.addAll(four);
         this.kicker = kicker;
     }
@@ -22,7 +22,7 @@ public class FourOfAKind extends RankedHand<FourOfAKind> {
     @Contract(pure = true)
     @Override
     public int compareTo(@NotNull FourOfAKind that) {
-        return compare(this.four.first(), that.four.first());
+        return compare(this.four.get(0), that.four.get(0));
     }
 
     @NotNull

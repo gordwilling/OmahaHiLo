@@ -9,8 +9,8 @@ import java.util.*;
 
 public class TwoPair extends RankedHand<TwoPair> {
 
-    private SortedSet<Card> highPair;
-    private SortedSet<Card> lowPair;
+    private List<Card> highPair;
+    private List<Card> lowPair;
     private Card kicker;
 
     public TwoPair(@NotNull List<Card> pairOne,
@@ -18,8 +18,8 @@ public class TwoPair extends RankedHand<TwoPair> {
                    @NotNull Card kicker,
                    @NotNull Comparator<Card> comparator) {
         super(HandRank.TwoPair, comparator);
-        this.highPair = new TreeSet<>(comparator);
-        this.lowPair = new TreeSet<>(comparator);
+        this.highPair = new ArrayList<>();
+        this.lowPair = new ArrayList<>();
         this.kicker = kicker;
 
         int comparison = compare(pairOne.get(0), pairTwo.get(0));
@@ -37,9 +37,9 @@ public class TwoPair extends RankedHand<TwoPair> {
     @Contract(pure = true)
     @Override
     public int compareTo(@NotNull TwoPair that) {
-        int result = compare(this.highPair.first(), that.highPair.first());
+        int result = compare(this.highPair.get(0), that.highPair.get(0));
         if (result == 0) {
-            result = compare(this.lowPair.first(), that.lowPair.first());
+            result = compare(this.lowPair.get(0), that.lowPair.get(0));
             if (result == 0) {
                 result = compare(this.kicker, that.kicker);
             }

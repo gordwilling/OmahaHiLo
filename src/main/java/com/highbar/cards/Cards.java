@@ -16,9 +16,8 @@ public class Cards {
     }
 
     @Contract(pure = true)
-    public static int compare(@NotNull SortedSet<Card> xs, @NotNull SortedSet<Card> ys, Comparator<Card> comparator) {
+    public static int compare(@NotNull List<Card> xs, @NotNull List<Card> ys, Comparator<Card> comparator) {
         List<Card2Tuple> cards = zip(xs, ys);
-        Collections.reverse(cards);
         Iterator<Card2Tuple> i = cards.iterator();
         int result = 0;
         while (result == 0 && i.hasNext()) {
@@ -30,7 +29,7 @@ public class Cards {
 
     @NotNull
     @Contract(pure = true)
-    private static List<Card2Tuple> zip(@NotNull SortedSet<Card> xs, @NotNull SortedSet<Card> ys) {
+    private static List<Card2Tuple> zip(@NotNull List<Card> xs, @NotNull List<Card> ys) {
         if (xs.size() != ys.size()) throw new UnsupportedOperationException();
         Iterator<Card> ix = xs.iterator();
         Iterator<Card> iy = ys.iterator();
