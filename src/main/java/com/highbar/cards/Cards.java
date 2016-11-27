@@ -3,16 +3,13 @@ package com.highbar.cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
-public class Cards {
+public class Strings {
     @Contract(pure = true)
     @NotNull
-    public static String toString(@NotNull Set<Card> cards) {
-        Optional<String> opt = cards.stream()
-                .map(Card::toString)
-                .reduce((x, y) -> x + "-" + y);
-        return opt.isPresent() ? opt.get() : "";
+    public static <T> String toString(@NotNull Collection<T> ts) {
+        return ts.stream().map(T::toString).collect(Collectors.joining("-"));
     }
 }
