@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum CardRank implements HasSymbol {
+    Ace("A"),
     Two("2"),
     Three("3"),
     Four("4"),
@@ -18,8 +19,7 @@ public enum CardRank implements HasSymbol {
     Ten("T"),
     Jack("J"),
     Queen("Q"),
-    King("K"),
-    Ace("A");
+    King("K");
 
     private final String symbol;
 
@@ -37,7 +37,7 @@ public enum CardRank implements HasSymbol {
     @NotNull
     @Contract(pure = true)
     public static CardRank from(@NotNull String s) {
-        Optional<CardRank> opt = Arrays.stream(values()).filter(v -> v.symbol.equals(s)).findFirst();
+        Optional<CardRank> opt = Arrays.stream(values()).filter(x -> x.symbol.equals(s)).findFirst();
         if (opt.isPresent()) return opt.get();
         throw new IllegalArgumentException(s);
     }

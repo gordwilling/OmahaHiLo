@@ -12,6 +12,10 @@ package object cards {
     suit <- Gen.oneOf(Suit.values)
   } yield new Card(rank, suit)
 
+  val genCards: Gen[Set[Card]] = for {
+    list <- Gen.listOfN(5, genCard)
+  } yield list.toSet
+
   val genAce: Gen[Card] = for {
     suit <- Gen.oneOf(Suit.values)
   } yield new Card(CardRank.Ace, suit)

@@ -7,31 +7,31 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class ThreeOfAKind extends RankedHand<ThreeOfAKind> {
+public class FullHouse extends RankedHand<FullHouse> {
 
-    private SortedSet<Card> three;
-    private SortedSet<Card> kickers;
+    private SortedSet<Card> triplet;
+    private SortedSet<Card> pair;
 
-    public ThreeOfAKind(@NotNull Set<Card> three, @NotNull Set<Card> kickers, @NotNull Comparator<Card> comparator) {
-        super(HandRank.ThreeOfAKind, comparator);
-        this.three = new TreeSet<>(comparator);
-        this.kickers = new TreeSet<>(comparator);
-        this.three.addAll(three);
-        this.kickers.addAll(kickers);
+    public FullHouse(@NotNull List<Card> triplet, @NotNull List<Card> pair, @NotNull Comparator<Card> comparator) {
+        super(HandRank.FullHouse, comparator);
+        this.triplet = new TreeSet<>(comparator);
+        this.pair = new TreeSet<>(comparator);
+        this.triplet.addAll(triplet);
+        this.pair.addAll(pair);
     }
 
     @Contract(pure = true)
     @Override
-    public int compareTo(@NotNull ThreeOfAKind that) {
-        return this.three.first().rank().compareTo(that.three.first().rank());
+    public int compareTo(@NotNull FullHouse that) {
+        return compare(this.triplet.first(), that.triplet.first());
     }
 
     @NotNull
     @Contract(pure = true)
     @Override
     public String toString() {
-        List<Card> cards = new ArrayList<>(three);
-        cards.addAll(kickers);
+        List<Card> cards = new ArrayList<>(triplet);
+        cards.addAll(pair);
         return Cards.toString(cards);
     }
 }

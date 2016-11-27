@@ -8,8 +8,8 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 class CardComparatorSpec extends FunSpec with Matchers with GeneratorDrivenPropertyChecks {
 
-  private val highCard = CardComparators.highHand
-  private val low8 = CardComparators.low8
+  private val highCard = CardComparators.aceHigh
+  private val low8 = CardComparators.aceLow
 
   describe("When Comparing Two Cards using High Hand Rules") {
     describe("An Ace is The Highest Card. It") {

@@ -12,25 +12,25 @@ import static com.highbar.cards.CardRank.Ace;
 public class CardComparators {
 
     /**
-     * @return a comparator that compares cards using High Hand rules (Ace is high)
+     * @return a comparator that compares cards using 'Ace is high
      */
     @NotNull
     @Contract(pure = true)
-    public static Comparator<Card> highHand() {
-        return Comparator.comparingInt(x -> x.rank().ordinal());
-    }
-
-    /**
-     * @return a comparator that compares cards using Low 8 rules (Ace is low)
-     */
-    @NotNull
-    @Contract(pure = true)
-    public static Comparator<Card> low8() {
+    public static Comparator<Card> aceHigh() {
         return (x, y) -> {
             if (both(x, y).are(Ace) || both(x, y).areNot(Ace)) {
                 return x.rank().ordinal() - y.rank().ordinal();
-            } else return x.rank() == Ace ? -1 : 1;
+            } else return x.rank() == Ace ? 1 : -1;
         };
+    }
+
+    /**
+     * @return a comparator that compares cards using 'Ace is low' rule
+     */
+    @NotNull
+    @Contract(pure = true)
+    public static Comparator<Card> aceLow() {
+        return Comparator.comparingInt(x -> x.rank().ordinal());
     }
 
     /**
