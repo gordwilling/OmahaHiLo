@@ -17,6 +17,12 @@ public final class Straight extends RankedHand {
         this.cards.sort(comparator.reversed());
     }
 
+    // there is a problem with the ranking of straights (and the print out)
+    // due to the ace.
+    //
+    // in Ace-High rules, the Ace-through-Five straight still considers the Ace low
+    // and we have not handled that :(
+
     @Contract(pure = true)
     @Override
     public int compareTo(@NotNull RankedHand r) {
