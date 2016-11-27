@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class TwoPair extends RankedHand<TwoPair> {
+public class TwoPair extends RankedHand {
 
     private List<Card> highPair;
     private List<Card> lowPair;
@@ -18,30 +18,32 @@ public class TwoPair extends RankedHand<TwoPair> {
                    @NotNull Card kicker,
                    @NotNull Comparator<Card> comparator) {
         super(HandRank.TwoPair, comparator);
-        this.highPair = new ArrayList<>();
-        this.lowPair = new ArrayList<>();
         this.kicker = kicker;
 
         int comparison = compare(pairOne.get(0), pairTwo.get(0));
         if (comparison > 0) {
-            this.highPair.addAll(pairOne);
-            this.lowPair.addAll(pairTwo);
+            this.highPair = new ArrayList<>(pairOne);
+            this.lowPair = new ArrayList<>(pairTwo);
         } else if (comparison < 0) {
-            this.highPair.addAll(pairTwo);
-            this.lowPair.addAll(pairOne);
+            this.highPair = new ArrayList<>(pairTwo);
+            this.lowPair = new ArrayList<>(pairOne);
         } else {
-            throw new IllegalStateException("Expected unreachable code");
+            throw new IllegalStateException("Reached unreachable code");
         }
     }
 
     @Contract(pure = true)
     @Override
-    public int compareTo(@NotNull TwoPair that) {
-        int result = compare(this.highPair.get(0), that.highPair.get(0));
+    public int compareTo(@NotNull RankedHand r) {
+        int result = super.compareTo(r);
         if (result == 0) {
-            result = compare(this.lowPair.get(0), that.lowPair.get(0));
+            TwoPair that = (TwoPair)r;
+            result = compare(this.highPair.get(0), that.highPair.get(0));
             if (result == 0) {
-                result = compare(this.kicker, that.kicker);
+                result = compare(this.lowPair.get(0), that.lowPair.get(0));
+                if (result == 0) {
+                    result = compare(this.kicker, that.kicker);
+                }
             }
         }
         return result;

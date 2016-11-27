@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 import static com.highbar.util.Parameters.require;
 
-public abstract class RankedHand<T extends RankedHand> implements Comparable<T> {
+public abstract class RankedHand implements Comparable<RankedHand> {
     private HandRank rank;
     private Comparator<Card> comparator;
 
@@ -33,6 +33,12 @@ public abstract class RankedHand<T extends RankedHand> implements Comparable<T> 
     @Contract(pure = true)
     public int compare(Card x, Card y) {
         return comparator.compare(x, y);
+    }
+
+    @Contract(pure = true)
+    @Override
+    public int compareTo(RankedHand that) {
+        return this.rank().compareTo(that.rank());
     }
 
     @Override

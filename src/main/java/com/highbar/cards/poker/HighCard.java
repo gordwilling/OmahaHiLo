@@ -7,21 +7,25 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public final class HighCard extends RankedHand<HighCard> {
+public final class HighCard extends RankedHand {
 
     private List<Card> cards;
 
     HighCard(@NotNull List<Card> cards, @NotNull Comparator<Card> comparator) {
         super(HandRank.HighCard, comparator);
         this.cards = new ArrayList<>(cards);
-        this.cards.addAll(cards);
         this.cards.sort(comparator.reversed());
     }
 
     @Contract(pure = true)
     @Override
-    public int compareTo(@NotNull HighCard that) {
-        return Cards.compare(this.cards, that.cards, comparator());
+    public int compareTo(@NotNull RankedHand r) {
+        int result = super.compareTo(r);
+        if (result == 0) {
+            HighCard that = (HighCard) r;
+            result = Cards.compare(this.cards, that.cards, comparator());
+        }
+        return result;
     }
 
     @Contract(pure = true)

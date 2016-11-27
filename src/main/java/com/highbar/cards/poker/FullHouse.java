@@ -7,23 +7,26 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class FullHouse extends RankedHand<FullHouse> {
+public class FullHouse extends RankedHand {
 
     private List<Card> triplet;
     private List<Card> pair;
 
     public FullHouse(@NotNull List<Card> triplet, @NotNull List<Card> pair, @NotNull Comparator<Card> comparator) {
         super(HandRank.FullHouse, comparator);
-        this.triplet = new ArrayList<>();
-        this.pair = new ArrayList<>();
-        this.triplet.addAll(triplet);
-        this.pair.addAll(pair);
+        this.triplet = new ArrayList<>(triplet);
+        this.pair = new ArrayList<>(pair);
     }
 
     @Contract(pure = true)
     @Override
-    public int compareTo(@NotNull FullHouse that) {
-        return compare(this.triplet.get(0), that.triplet.get(0));
+    public int compareTo(@NotNull RankedHand r) {
+        int result = super.compareTo(r);
+        if (result == 0) {
+            FullHouse that = (FullHouse) r;
+            result = compare(this.triplet.get(0), that.triplet.get(0));
+        }
+        return result;
     }
 
     @NotNull
