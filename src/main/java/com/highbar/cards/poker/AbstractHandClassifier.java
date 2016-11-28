@@ -69,24 +69,24 @@ abstract class AbstractHandClassifier {
      * <p/>
      * It takes 3 steps to coerce the data into this structure:
      * <ol>
-     *     <li>
-     *       Group the cards in the list by their rank. We end up with a map
-     *       from CardRank -> List<Card>
-     *               For example if our hand contains 2c-2d-2h-5c-7h, we get (excluding empty values)
-     *               <br/>2 -> [2c, 2d, 2h]
-     *               <br/>5 -> [5c]
-     *               <br/>7 -> [7h]
-     *     </li>
-     *     <li>
-     *       Remove elements pointing to empty list values
-     *     </li>
-     *     <li>
-     *       Group the list values by size:
-     *               <br/>1 -> [[5c], [7h]]
-     *               <br/>3 -> [2c, 2d, 2h]
-     *     </li>
+     * <li>
+     * Group the cards in the list by their rank. We end up with a map
+     * from CardRank -> List<Card>
+     * For example if our hand contains 2c-2d-2h-5c-7h, we get (excluding empty values)
+     * <br/>2 -> [2c, 2d, 2h]
+     * <br/>5 -> [5c]
+     * <br/>7 -> [7h]
+     * </li>
+     * <li>
+     * Remove elements pointing to empty list values
+     * </li>
+     * <li>
+     * Group the list values by size:
+     * <br/>1 -> [[5c], [7h]]
+     * <br/>3 -> [2c, 2d, 2h]
+     * </li>
      * </ol>
-     *  In this example we see a 3-of-a-kind (2c, 2d, 2h) and two kickers (5c, 7h)
+     * In this example we see a 3-of-a-kind (2c, 2d, 2h) and two kickers (5c, 7h)
      */
     @Contract(pure = true)
     @NotNull

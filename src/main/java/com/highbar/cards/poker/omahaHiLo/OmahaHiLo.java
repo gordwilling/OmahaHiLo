@@ -8,7 +8,12 @@ import com.highbar.cards.poker.Low8Classifier;
 import com.highbar.cards.poker.RankedHand;
 import com.highbar.util.Lists;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -16,68 +21,69 @@ import java.util.stream.Collectors;
 
 public class OmahaHiLo {
     public static void main(String[] args) {
-        String[] ss = {
-                "HandA:Ac-Kd-Jd-3d HandB:5c-5d-6c-7d Board:Ah-Kh-5s-2s-Qd",
-                "HandA:Ac-Kd-Jd-3d HandB:5c-5d-6c-6d Board:Ad-Kh-5s-2d-Qd",
-                "HandA:Qc-Jd-Td-3d HandB:Tc-Jc-8h-6d Board:Ad-Kh-Qs-2d-3c",
-                "HandA:Qh-4d-Tc-8s HandB:Qc-8c-7d-2h Board:Ad-As-3c-3d-5d",
-                "HandA:Ah-2s-Qd-9S HandB:Ac-2d-6s-Jh Board:Kd-4h-Kh-5s-3c",
-                "HandA:Ah-2s-Qd-9S HandB:Ac-2d-As-Jh Board:Kd-4h-Kh-5s-3c",
-                "HandA:6d-6c-Kc-4d HandB:Jh-Js-Qs-8h Board:2s-3h-9c-As-Ac",
-                "HandA:6d-Kh-Ac-4d HandB:Jh-2s-Ah-8h Board:Js-3h-9c-As-6c",
-                "HandA:Qc-Jd-Td-3d HandB:3s-3h-8h-6d Board:Ad-Kh-Qs-Qd-3c"
-        };
 
-        Arrays.stream(ss).forEach(s -> {
-            System.out.println(s);
+        try (BufferedReader in = Files.newBufferedReader(Paths.get(args[0]));
+             PrintWriter out = new PrintWriter(new FileWriter(args[1]))) {
 
-            Deal d = DealParser.parse(s);
-            List<Card> handA = d.handA();
-            List<Card> handB = d.handB();
-            List<Card> board = d.board();
+            System.out.println("Started");
+            long startMillis = System.currentTimeMillis();
 
-            List<List<Card>> handAOptions = Lists.choose2(handA);
-            List<List<Card>> handBOptions = Lists.choose2(handB);
-            List<List<Card>> boardOptions = Lists.choose3(board);
+            in.lines().filter(x -> x.length() != 0).forEach(x -> {
 
-            List<List<Card>> handAPermutations = Cards.permute(handAOptions, boardOptions);
-            List<List<Card>> handBPermutations = Cards.permute(handBOptions, boardOptions);
+                Deal d = DealParser.parse(x);
+                out.println(x);
 
-            HighHandClassifier highHand = new HighHandClassifier();
-            RankedHand aHigh = bestHighHand(handAPermutations, highHand);
-            RankedHand bHigh = bestHighHand(handBPermutations, highHand);
+                List<Card> handA = d.handA();
+                List<Card> handB = d.handB();
+                List<Card> board = d.board();
 
-            int hiResult = aHigh.compareTo(bHigh);
+                List<List<Card>> handAOptions = Lists.choose2(handA);
+                List<List<Card>> handBOptions = Lists.choose2(handB);
+                List<List<Card>> boardOptions = Lists.choose3(board);
 
-            if (hiResult > 0) printHiWinner('A', aHigh.rank());
-            else if (hiResult < 0) printHiWinner('B', bHigh.rank());
-            else System.out.print("=> Split Pot Hi (" + aHigh.rank() + ");");
+                List<List<Card>> handAPermutations = Cards.permute(handAOptions, boardOptions);
+                List<List<Card>> handBPermutations = Cards.permute(handBOptions, boardOptions);
 
-            Low8Classifier lowHand = new Low8Classifier();
-            Optional<RankedHand> aLow = bestLow8Hand(handAPermutations, lowHand);
-            Optional<RankedHand> bLow = bestLow8Hand(handBPermutations, lowHand);
+                HighHandClassifier highHand = new HighHandClassifier();
+                RankedHand aHigh = bestHighHand(handAPermutations, highHand);
+                RankedHand bHigh = bestHighHand(handBPermutations, highHand);
 
-            if (aLow.isPresent() && bLow.isPresent()) {
-                RankedHand a = aLow.get();
-                RankedHand b = bLow.get();
-                int loResult = a.compareTo(b);
-                if (loResult < 0) printLoWinner(a, 'A');
-                else if (loResult > 0) printLoWinner(b, 'B');
-                else System.out.println("\t\tSplit Pot Lo (" + outString(a) + ")");
-            }
-            else if (aLow.isPresent()) printLoWinner(aLow.get(), 'A');
-            else if (bLow.isPresent()) printLoWinner(bLow.get(), 'B');
-            else System.out.println("\t\tNo hand qualified for Low");
-            System.out.println();
-        });
+                int hiResult = aHigh.compareTo(bHigh);
+
+                if (hiResult > 0) printHiWinner(out, 'A', aHigh.rank());
+                else if (hiResult < 0) printHiWinner(out, 'B', bHigh.rank());
+                else out.print("=> Split Pot Hi (" + aHigh.rank() + ");");
+
+                Low8Classifier lowHand = new Low8Classifier();
+                Optional<RankedHand> aLow = bestLow8Hand(handAPermutations, lowHand);
+                Optional<RankedHand> bLow = bestLow8Hand(handBPermutations, lowHand);
+
+                if (aLow.isPresent() && bLow.isPresent()) {
+                    RankedHand a = aLow.get();
+                    RankedHand b = bLow.get();
+                    int loResult = a.compareTo(b);
+                    if (loResult < 0) printLoWinner(out, a, 'A');
+                    else if (loResult > 0) printLoWinner(out, b, 'B');
+                    else out.println("\t\tSplit Pot Lo (" + outString(a) + ")");
+                } else if (aLow.isPresent()) printLoWinner(out, aLow.get(), 'A');
+                else if (bLow.isPresent()) printLoWinner(out, bLow.get(), 'B');
+                else out.println("\t\tNo hand qualified for Low");
+                out.println();
+            });
+
+            long durationMillis = System.currentTimeMillis() - startMillis;
+            System.out.println("Finished in " + durationMillis + " milliseconds");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void printHiWinner(char handId, HandRank rank) {
-        System.out.print("=> Hand" + handId + " wins Hi (" + rank + ");");
+    private static void printHiWinner(PrintWriter out, char handId, HandRank rank) {
+        out.print("=> Hand" + handId + " wins Hi (" + rank + ");");
     }
 
-    private static void printLoWinner(RankedHand a, char handId) {
-        System.out.println("\t\tHand" + handId + " wins Lo (" + outString(a) + ")");
+    private static void printLoWinner(PrintWriter out, RankedHand a, char handId) {
+        out.println("\t\tHand" + handId + " wins Lo (" + outString(a) + ")");
     }
 
     private static String outString(RankedHand a) {

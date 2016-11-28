@@ -39,7 +39,7 @@ public final class TwoPair extends RankedHand {
     public int compareTo(@NotNull RankedHand r) {
         int result = super.compareTo(r);
         if (result == 0) {
-            TwoPair that = (TwoPair)r;
+            TwoPair that = (TwoPair) r;
             result = compare(this.highPair.get(0), that.highPair.get(0));
             if (result == 0) {
                 result = compare(this.lowPair.get(0), that.lowPair.get(0));

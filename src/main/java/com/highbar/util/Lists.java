@@ -29,8 +29,9 @@ public class Lists {
         }
     }
 
-    // These next two functions should be partners in recursion
-    // and I'm almost there but not quite
+    // On paper I could recursively define `n choose 3` in terms
+    // of `(n - 1) choose 2` and I'm onto it here... but didn't
+    // quite make it :(
 
     public static <T> List<List<T>> choose3(List<T> xs) {
         List<T> copy = new ArrayList<>(xs);
