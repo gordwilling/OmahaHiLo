@@ -65,7 +65,8 @@ public class OmahaHiLo {
                     if (loResult < 0) printLoWinner(out, a, 'A');
                     else if (loResult > 0) printLoWinner(out, b, 'B');
                     else out.println("\t\tSplit Pot Lo (" + outString(a) + ")");
-                } else if (aLow.isPresent()) printLoWinner(out, aLow.get(), 'A');
+                }
+                else if (aLow.isPresent()) printLoWinner(out, aLow.get(), 'A');
                 else if (bLow.isPresent()) printLoWinner(out, bLow.get(), 'B');
                 else out.println("\t\tNo hand qualified for Low");
                 out.println();
