@@ -5,9 +5,7 @@ import com.highbar.cards.Cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static com.highbar.util.Parameters.require;
 
@@ -19,7 +17,7 @@ public class Deal {
     private Set<Card> handB;
     private Set<Card> board;
 
-    public Deal(@NotNull Set<Card> handA, @NotNull Set<Card> handB, @NotNull Set<Card> board) {
+    Deal(@NotNull Set<Card> handA, @NotNull Set<Card> handB, @NotNull Set<Card> board) {
         require(handA, handB, board);
         if (handA.size() != 4) throw new IllegalArgumentException();
         if (handB.size() != 4) throw new IllegalArgumentException();
@@ -31,20 +29,20 @@ public class Deal {
 
     @Contract(pure = true)
     @NotNull
-    public Set<Card> handA() {
-        return handA;
+    List<Card> handA() {
+        return new ArrayList<>(handA);
     }
 
     @Contract(pure = true)
     @NotNull
-    public Set<Card> handB() {
-        return handB;
+    List<Card> handB() {
+        return new ArrayList<>(handB);
     }
 
     @Contract(pure = true)
     @NotNull
-    public Set<Card> board() {
-        return board;
+    List<Card> board() {
+        return new ArrayList<>(board);
     }
 
     @Contract(pure = true)

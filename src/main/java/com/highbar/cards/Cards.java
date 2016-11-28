@@ -15,6 +15,19 @@ public class Cards {
         return Strings.toString(ts, "-");
     }
 
+    @NotNull
+    @Contract(pure = true)
+    public static List<List<Card>> permute(@NotNull List<List<Card>> xss, @NotNull List<List<Card>> yss) {
+        List<List<Card>> permutations = new ArrayList<>();
+        xss.forEach(xs -> yss.forEach(ys -> {
+            List<Card> p = new ArrayList<>();
+            p.addAll(xs);
+            p.addAll(ys);
+            permutations.add(p);
+        }));
+        return permutations;
+    }
+
     @Contract(pure = true)
     public static int compare(@NotNull List<Card> xs, @NotNull List<Card> ys, Comparator<Card> comparator) {
         List<Card2Tuple> cards = zip(xs, ys);
