@@ -11,9 +11,9 @@ import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 
-public class Low8HandClassifier extends AbstractHandClassifier {
+public class Low8Classifier extends AbstractHandClassifier {
 
-    public Low8HandClassifier() {
+    public Low8Classifier() {
         super(CardComparators.aceLow());
     }
 
@@ -24,8 +24,13 @@ public class Low8HandClassifier extends AbstractHandClassifier {
         List<Card> cards = new ArrayList<>();
         cards.addAll(hand);
 
+        // the spec didn't mention it, but according to the Internet, Low 8
+        // rules ignore flushes and straights. That means all hands are
+        // ranked as High Card... Without this knowledge, this program was
+        // generating results that differed from the spec.
+
         return noneHigherThan8(cards) && distinctRanks(cards)
-                ? Optional.of(noneOfAKind(cards))
+                ? Optional.of(new HighCard(cards, comparator()))
                 : Optional.empty();
     }
 

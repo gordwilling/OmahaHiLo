@@ -12,15 +12,19 @@ import static java.text.MessageFormat.format;
 
 public class CardParser {
 
-    public static String CardRankPattern = patternFrom(CardRank.values());
+    private static String CardRankPattern = patternFrom(CardRank.values());
 
-    public static String SuitPattern = patternFrom(Suit.values());
+    private static String SuitPattern = patternFrom(Suit.values());
 
     @Contract(pure = true)
     @NotNull
     public static Card parse(@NotNull String s) {
-        Pattern p = Pattern.compile(format("({0})({1})", CardRankPattern, SuitPattern));
+        Pattern p = Pattern.compile(
+                format("({0})({1})", CardRankPattern, SuitPattern),
+                Pattern.CASE_INSENSITIVE);
+
         Matcher m = p.matcher(s);
+
         if (m.find()) {
             String rankToken = m.group(1);
             String suitToken = m.group(2);

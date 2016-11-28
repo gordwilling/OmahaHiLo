@@ -5,7 +5,10 @@ import com.highbar.cards.Cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import static com.highbar.util.Parameters.require;
 
@@ -13,18 +16,18 @@ import static com.highbar.util.Parameters.require;
  * One deal of two-player Omaha Hi/Lo consisting of two 4-card holes and a 5-card common board
  */
 public class Deal {
-    private Set<Card> handA;
-    private Set<Card> handB;
-    private Set<Card> board;
+    private List<Card> handA;
+    private List<Card> handB;
+    private List<Card> board;
 
     Deal(@NotNull Set<Card> handA, @NotNull Set<Card> handB, @NotNull Set<Card> board) {
         require(handA, handB, board);
         if (handA.size() != 4) throw new IllegalArgumentException();
         if (handB.size() != 4) throw new IllegalArgumentException();
         if (board.size() != 5) throw new IllegalArgumentException();
-        this.handA = Collections.unmodifiableSet(handA);
-        this.handB = Collections.unmodifiableSet(handB);
-        this.board = Collections.unmodifiableSet(board);
+        this.handA = new ArrayList<>(handA);
+        this.handB = new ArrayList<>(handB);
+        this.board = new ArrayList<>(board);
     }
 
     @Contract(pure = true)

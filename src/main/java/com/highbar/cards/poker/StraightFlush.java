@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public final class StraightFlush extends Straight {
+final class StraightFlush extends Straight {
 
     StraightFlush(@NotNull List<Card> cards, @NotNull Comparator<Card> comparator) {
         super(HandRank.StraightFlush, cards, comparator);

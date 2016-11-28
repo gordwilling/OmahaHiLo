@@ -5,14 +5,16 @@ import com.highbar.cards.Cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public final class ThreeOfAKind extends RankedHand {
 
     private List<Card> triplet;
     private List<Card> kickers;
 
-    public ThreeOfAKind(@NotNull List<Card> triplet, @NotNull List<Card> kickers, @NotNull Comparator<Card> comparator) {
+    ThreeOfAKind(@NotNull List<Card> triplet, @NotNull List<Card> kickers, @NotNull Comparator<Card> comparator) {
         super(HandRank.ThreeOfAKind, comparator);
         this.triplet = new ArrayList<>(triplet);
         this.kickers = new ArrayList<>(kickers);

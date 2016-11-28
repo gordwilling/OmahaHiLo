@@ -48,7 +48,7 @@ import static java.util.Collections.emptyList;
  * <td bgcolor="lightgray">High Card</td><td>Flush</td><td bgcolor="lightgray">Straight</td><td>Straight Flush</td></tr>
  * </table>
  */
-public abstract class AbstractHandClassifier {
+abstract class AbstractHandClassifier {
 
     Comparator<Card> comparator;
 

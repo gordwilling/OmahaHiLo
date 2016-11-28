@@ -1,16 +1,22 @@
 package com.highbar.util;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lists {
-    public static <T> List<List<T>> choose2(List<T> xs) {
+    @Contract(pure = true)
+    @NotNull
+    public static <T> List<List<T>> choose2(@NotNull List<T> xs) {
         List<T> copy = new ArrayList<>(xs);
         return combine2(copy.remove(0), copy, new ArrayList<>());
     }
 
-    private static <T> List<List<T>> combine2(T t, List<T> xs, List<List<T>> result) {
+    @NotNull
+    private static <T> List<List<T>> combine2(@NotNull T t, @NotNull List<T> xs, @NotNull List<List<T>> result) {
         if (xs.size() == 0) return result;
         else {
             xs.forEach(x -> {

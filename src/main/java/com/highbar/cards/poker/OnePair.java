@@ -5,14 +5,16 @@ import com.highbar.cards.Cards;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class OnePair extends RankedHand {
 
     private List<Card> pair;
     private List<Card> kickers;
 
-    public OnePair(@NotNull List<Card> pair, @NotNull List<Card> kickers, @NotNull Comparator<Card> comparator) {
+    OnePair(@NotNull List<Card> pair, @NotNull List<Card> kickers, @NotNull Comparator<Card> comparator) {
         super(HandRank.OnePair, comparator);
         this.pair = new ArrayList<>(pair);
         this.kickers = new ArrayList<>(kickers);

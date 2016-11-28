@@ -25,7 +25,7 @@ public enum Suit implements HasSymbol {
     @NotNull
     @Contract(pure = true)
     public static Suit from(@NotNull String s) {
-        Optional<Suit> opt = Arrays.stream(values()).filter(v -> v.symbol.equals(s)).findFirst();
+        Optional<Suit> opt = Arrays.stream(values()).filter(v -> v.symbol.equalsIgnoreCase(s)).findFirst();
         if (opt.isPresent()) return opt.get();
         throw new IllegalArgumentException(s);
     }
