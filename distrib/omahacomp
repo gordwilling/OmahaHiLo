@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [ "$#" -ne "2" ]
+then
+  echo "Usage: omahahilo [INPUT FILE] [OUTPUT FILE]"
+  echo
+  exit
+fi
+java -cp ./omahahilo_2.12-1.0.jar com.highbar.cards.poker.omahaHiLo.OmahaHiLo $*
