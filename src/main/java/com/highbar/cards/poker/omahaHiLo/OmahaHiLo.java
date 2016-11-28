@@ -2,6 +2,7 @@ package com.highbar.cards.poker.omahaHiLo;
 
 import com.highbar.cards.Card;
 import com.highbar.cards.Cards;
+import com.highbar.cards.poker.HandRank;
 import com.highbar.cards.poker.HighHandClassifier;
 import com.highbar.cards.poker.Low8Classifier;
 import com.highbar.cards.poker.RankedHand;
@@ -28,6 +29,7 @@ public class OmahaHiLo {
         };
 
         Arrays.stream(ss).forEach(s -> {
+            System.out.println(s);
 
             Deal d = DealParser.parse(s);
             List<Card> handA = d.handA();
@@ -42,67 +44,64 @@ public class OmahaHiLo {
             List<List<Card>> handBPermutations = Cards.permute(handBOptions, boardOptions);
 
             HighHandClassifier highHand = new HighHandClassifier();
-            RankedHand aHigh = handAPermutations.stream()
-                    .map(highHand::highHand)
-                    .sorted(Comparator.reverseOrder())
-                    .collect(Collectors.toList())
-                    .get(0);
-
-            RankedHand bHigh = handBPermutations.stream()
-                    .map(highHand::highHand)
-                    .sorted(Comparator.reverseOrder())
-                    .collect(Collectors.toList())
-                    .get(0);
-
-            Low8Classifier lowHand = new Low8Classifier();
-
-            List<RankedHand> aLows = handAPermutations.stream()
-                    .map(lowHand::low8Hand)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .sorted()
-                    .collect(Collectors.toList());
-
-            List<RankedHand> bLows = handBPermutations.stream()
-                    .map(lowHand::low8Hand)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .sorted()
-                    .collect(Collectors.toList());
-
-            System.out.println(d.toString());
+            RankedHand aHigh = bestHighHand(handAPermutations, highHand);
+            RankedHand bHigh = bestHighHand(handBPermutations, highHand);
 
             int hiResult = aHigh.compareTo(bHigh);
-            if (hiResult > 0) {
-                System.out.print("=> HandA wins Hi (" + aHigh.rank() + ");");
-            } else if (hiResult < 0) {
-                System.out.print("=> HandB wins Hi (" + bHigh.rank() + ");");
-            } else {
-                System.out.print("=> Split Pot Hi (" + aHigh.rank() + ");");
-            }
 
+            if (hiResult > 0) printHiWinner('A', aHigh.rank());
+            else if (hiResult < 0) printHiWinner('B', bHigh.rank());
+            else System.out.print("=> Split Pot Hi (" + aHigh.rank() + ");");
 
-            if (aLows.size() != 0 && bLows.size() != 0) {
-                RankedHand aLow = aLows.get(0);
-                RankedHand bLow = bLows.get(0);
-                int loResult = aLow.compareTo(bLow);
-                if (loResult < 0) {
-                    System.out.println("\t\tHandA wins Lo (" + aLow.toString().replaceAll("[cdhs-]", "") + ")");
-                } else if (loResult > 0) {
-                    System.out.println("\t\tHandB wins Lo (" + bLow.toString().replaceAll("[cdhs-]", "") + ")");
-                } else {
-                    System.out.println("\t\tSplit Pot Lo (" + bLow.toString().replaceAll("[cdhs-]", "") + ")");
-                }
-            } else if (aLows.size() != 0) {
-                RankedHand aLow = aLows.get(0);
-                System.out.println("\t\tHandA wins Lo (" + aLow.toString().replaceAll("[cdhs-]", "") + ")");
-            } else if (bLows.size() != 0) {
-                RankedHand bLow = bLows.get(0);
-                System.out.println("\t\tHandB wins Lo (" + bLow.toString().replaceAll("[cdhs-]", "") + ")");
-            } else {
-                System.out.println("\t\tNo hand qualified for Low");
+            Low8Classifier lowHand = new Low8Classifier();
+            Optional<RankedHand> aLow = bestLow8Hand(handAPermutations, lowHand);
+            Optional<RankedHand> bLow = bestLow8Hand(handBPermutations, lowHand);
+
+            if (aLow.isPresent() && bLow.isPresent()) {
+                RankedHand a = aLow.get();
+                RankedHand b = bLow.get();
+                int loResult = a.compareTo(b);
+                if (loResult < 0) printLoWinner(a, 'A');
+                else if (loResult > 0) printLoWinner(b, 'B');
+                else System.out.println("\t\tSplit Pot Lo (" + outString(a) + ")");
             }
+            else if (aLow.isPresent()) printLoWinner(aLow.get(), 'A');
+            else if (bLow.isPresent()) printLoWinner(bLow.get(), 'B');
+            else System.out.println("\t\tNo hand qualified for Low");
             System.out.println();
         });
+    }
+
+    private static void printHiWinner(char handId, HandRank rank) {
+        System.out.print("=> Hand" + handId + " wins Hi (" + rank + ");");
+    }
+
+    private static void printLoWinner(RankedHand a, char handId) {
+        System.out.println("\t\tHand" + handId + " wins Lo (" + outString(a) + ")");
+    }
+
+    private static String outString(RankedHand a) {
+        return a.toString().replaceAll("[cdhs-]", "");
+    }
+
+    private static Optional<RankedHand> bestLow8Hand(List<List<Card>> permutations, Low8Classifier lowHand) {
+        List<RankedHand> low8s = permutations.stream()
+                .map(lowHand::low8Hand)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .sorted()
+                .collect(Collectors.toList());
+
+        return low8s.size() != 0
+                ? Optional.of(low8s.get(0))
+                : Optional.empty();
+    }
+
+    private static RankedHand bestHighHand(List<List<Card>> permutations, HighHandClassifier highHand) {
+        return permutations.stream()
+                .map(highHand::highHand)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList())
+                .get(0);
     }
 }

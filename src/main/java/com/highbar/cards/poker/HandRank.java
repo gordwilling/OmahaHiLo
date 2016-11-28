@@ -3,7 +3,7 @@ package com.highbar.cards.poker;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-enum HandRank {
+public enum HandRank {
     HighCard("High Card"),
     OnePair("One Pair"),
     TwoPair("Two Pair"),
