@@ -90,7 +90,10 @@ In Java 8, both operations can be done in one expression:
 As a side note, it is done more succinctly in Scala:
 
 ```scala
-  def groupByN(cards: List[Card]) = cards.groupBy(_.rank).values.filter(_.nonEmpty).groupBy(_.size)
+  def groupByN(cards: List[Card]) = cards.groupBy(_.rank)
+                                         .values
+                                         .filter(_.nonEmpty)
+                                         .groupBy(_.size)
 ```  
   
 Because there are only 4 suits of cards, there can be no more than 4-of-a-Kind, so the groupBy-_Group-Size_
@@ -99,75 +102,44 @@ a pair of Aces, a pair of Kings, and a Queen kicker.
 
 With the data organized in this manner, any poker hand can be identified using a simple decision tree:
       
-   - Does group 1 contain 5 cards?
-   
-     - Yes
-     
-       - Are the cards in sequence?
-        
-          - Yes
-          
-            - Do the cards have the same suit?
-            
-              - Yes
-              
-                - **_Straight Flush_**
-                
-              - No 
-              
+   - Does group 1 contain 5 cards?   
+     - Yes     
+       - Are the cards in sequence?        
+          - Yes          
+            - Do the cards have the same suit?            
+              - Yes              
+                - **_Straight Flush_**                
+              - No               
                 - **_Straight_**
-          - No
-          
-            - Do the cards have the same suit?
-            
-              - Yes
-              
-                - **_Flush_**
-                  
-              - No
-                
+          - No          
+            - Do the cards have the same suit?            
+              - Yes              
+                - **_Flush_**                  
+              - No                
                 - **_High Card_**
-     - No
-     
-       - Does group 1 contain 3 elements and group 2 contain 1 element?
-        
-         - **_1 Pair_**           
-        
-       - Does group 1 contain 1 element and group 2 contain 2 elements?
-           
-         - **_2 Pair_**
-         
-       - Does group 1 contain 2 elements and group 3 contain 1 element?
-         
-         - **_3-of-a-Kind_**
-         
-       - Does group 2 contain 1 element and group 3 contain 1 element?
-       
-         - **_Full House_**
-         
-       - Does group 1 contain 1 element and group 4 contain 1 element?
-       
+     - No     
+       - Does group 1 contain 3 elements and group 2 contain 1 element?        
+         - **_1 Pair_**                   
+       - Does group 1 contain 1 element and group 2 contain 2 elements?           
+         - **_2 Pair_**         
+       - Does group 1 contain 2 elements and group 3 contain 1 element?         
+         - **_3-of-a-Kind_**         
+       - Does group 2 contain 1 element and group 3 contain 1 element?       
+         - **_Full House_**         
+       - Does group 1 contain 1 element and group 4 contain 1 element?       
          - **_Four-of-a-Kind_**
        
 For Low 8 Rules, all cards must be different ranks, hands containing anything above an 8 do not 
 qualify, and straights and flushes are ignored.  The decision tree for Low 8, then, is:    
    
-   - Does group 1 contain 5 cards?
-   
-     - Yes
-     
-       - Are all cards 8 or lower?
-        
-          - Yes
-          
-            - **_High Card_**
-            
-          - No
-          
+   - Does group 1 contain 5 cards?   
+     - Yes     
+       - Are all cards 8 or lower?        
+          - Yes          
+            - **_High Card_**            
+          - No          
             - **_Disqualified_**
-
-     - No
-     
+     - No     
        - **_Disqualified_**       
         
    

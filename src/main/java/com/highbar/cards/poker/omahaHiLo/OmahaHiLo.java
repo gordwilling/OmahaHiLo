@@ -37,8 +37,8 @@ public class OmahaHiLo {
                 List<Card> handB = d.handB();
                 List<Card> board = d.board();
 
-                List<List<Card>> handAOptions = Lists.choose2(handA);
-                List<List<Card>> handBOptions = Lists.choose2(handB);
+                List<List<Card>> handAOptions = Lists.nChoose2(handA);
+                List<List<Card>> handBOptions = Lists.nChoose2(handB);
                 List<List<Card>> boardOptions = Lists.choose3(board);
 
                 List<List<Card>> handAPermutations = Cards.permute(handAOptions, boardOptions);

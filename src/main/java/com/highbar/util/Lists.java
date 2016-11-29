@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lists {
+    /**
+     * @return a List of all possible combinations of two elements from the given list
+     */
     @Contract(pure = true)
     @NotNull
-    public static <T> List<List<T>> choose2(@NotNull List<T> xs) {
+    public static <T> List<List<T>> nChoose2(@NotNull List<T> xs) {
         List<T> copy = new ArrayList<>(xs);
         return combine2(copy.remove(0), copy, new ArrayList<>());
     }
