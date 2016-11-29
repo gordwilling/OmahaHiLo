@@ -26,7 +26,7 @@ HandA:Ac-Kd-Jd-3d HandB:5c-5d-6c-7d Board:Ah-Kh-5s-2s-Qd
 
 A line of input is parsed in two steps.
 
-1. The 3 hands are parsed from the line of input, resulting in three strings, for example
+The 3 hands are parsed from the line of input, resulting in three strings, for example
  
 ```
    Ac-Kd-Jd-3d
@@ -34,7 +34,7 @@ A line of input is parsed in two steps.
    Ah-Kh-5s-2s-Qd
 ```
    
-2. These strings are then parsed, resulting in three lists of cards:
+These strings are then parsed, resulting in three lists of cards:
 ```
    [Ac, Kd, Jd, 3d]
    [5c, 5d, 6c, 7d]
@@ -59,45 +59,45 @@ For example, pair 9d-9c is higher than pair 2d-2c. Suit does not affect the rank
    
 Given a list of 5 cards, classifying the hand involves two 'groupBy' operations:
    
-   1. First, group by Rank. For example:
+First, group by Rank. For example:
 ```
-      List [Ac, Kd, Ah, Kc, Qs] 
+  List [Ac, Kd, Ah, Kc, Qs] 
 ```
 is converted into a map:
 ```
-      A -> [Ac, Ah]      
-      K -> [Kh, Kc]       
-      Q -> [Qs]
+  A -> [Ac, Ah]      
+  K -> [Kh, Kc]       
+  Q -> [Qs]
 ```
-   2. Then, group the values in that map by their size. For example:
+Then, group the values in that map by their size. For example:
 ```   
-      1 -> [[Qs]]      
-      2 -> [[Ac, Ah], [Kh, Kc]]      
-      3 -> []      
-      4 -> []
+  1 -> [[Qs]]      
+  2 -> [[Ac, Ah], [Kh, Kc]]      
+  3 -> []      
+  4 -> []
 ```
-   In Java 8, both operations can be done in one expression:
+In Java 8, both operations can be done in one expression:
       
-  ```java
-    Map<Integer, List<List<Card>>> groupByN(@NotNull List<Card> cards) {
-        return cards.stream()
-                .collect(Collectors.groupingBy(Card::rank))
-                .values().stream()
-                .filter(x -> x.size() != 0)
-                .collect(Collectors.groupingBy(List::size));  
-  ```
-  
-  As a side note, it is done more succinctly in Scala:
-  
-  ```scala
-    def groupByN(cards: List[Card]) = cards.groupBy(_.rank).values.filter(_.nonEmpty).groupBy(_.size)
-  ```  
+```java
+  Map<Integer, List<List<Card>>> groupByN(@NotNull List<Card> cards) {
+      return cards.stream()
+                  .collect(Collectors.groupingBy(Card::rank))
+                  .values().stream()
+                  .filter(x -> x.size() != 0)
+                  .collect(Collectors.groupingBy(List::size));  
+```
+
+As a side note, it is done more succinctly in Scala:
+
+```scala
+  def groupByN(cards: List[Card]) = cards.groupBy(_.rank).values.filter(_.nonEmpty).groupBy(_.size)
+```  
   
 Because there are only 4 suits of cards, there can be no more than 4-of-a-Kind, so the groupBy-_Group-Size_
 map will have a maximum of 4 entries with keys 1 through 4. In the example, the resultant map indicates
 a pair of Aces, a pair of Kings, and a Queen kicker. 
 
-With the data in this arrangement, all poker hands can be identified using a simple decision tree:
+With the data organized in this manner, any poker hand can be identified using a simple decision tree:
       
    - Does group 1 contain 5 cards?
    
