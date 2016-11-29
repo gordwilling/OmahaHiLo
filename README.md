@@ -2,7 +2,7 @@
 
 ## Description
 
-Two players are dealt hands of 4 cards each, and share community board of 5 cards.
+Two players are dealt hands of 4 cards each, and share a community board of 5 cards.
 
 ###### High Hand
 Each player selects two cards from his hand and three cards from the board to create the best hand using high 
@@ -14,7 +14,7 @@ Each player selects two cards from his hand and three cards from the board to cr
 
 ###### Program Input
 
-A text file containing multiple lines in the following format is read by the program. This line indicates the cards in 
+A text file containing multiple lines in the following format is read by the program. Each line indicates the cards in 
 play for a single round
 
 ```
@@ -42,7 +42,7 @@ A line of input is parsed in two steps.
 ```   
 ###### Classifying the Poker Hand
    
-Poker hand are evaluated according to rank, where the ranks are (from highest to lowest):
+Poker hands are evaluated according to rank, where the ranks are (from highest to lowest):
    
    - Straight Flush
    - 4-of-a-Kind
@@ -76,7 +76,7 @@ is converted into a map:
       3 -> []      
       4 -> []
 ```
-   In Java 8, both operations can be done in one expression
+   In Java 8, both operations can be done in one expression:
       
   ```java
     Map<Integer, List<List<Card>>> groupByN(@NotNull List<Card> cards) {
@@ -87,8 +87,14 @@ is converted into a map:
                 .collect(Collectors.groupingBy(List::size));  
   ```
   
+  As a side note, it is done more succinctly in Scala:
+  
+  ```scala
+    def groupByN(cards: List[Card]) = cards.groupBy(_.rank).values.filter(_.nonEmpty).groupBy(_.size)
+  ```  
+  
 Because there are only 4 suits of cards, there can be no more than 4-of-a-Kind, so the groupBy-_Group-Size_
-map will have a maximum of 4 entries with keys 1 through 4.  In the example, the resultant map indicates
+map will have a maximum of 4 entries with keys 1 through 4. In the example, the resultant map indicates
 a pair of Aces, a pair of Kings, and a Queen kicker. 
 
 With the data in this arrangement, all poker hands can be identified using a simple decision tree:
