@@ -181,7 +181,7 @@ cards:
    
 Each type of Poker Hand is represented by an Enumeration, which packs a free comparator. In addition, comparators have 
 been written to identify the highest hand between two hands of the same rank. Each of these comparators in turn, is 
-backed by one of two single-card comparators: one for Ace high, and one for Ace low.  In High Hand rules, straights 
+configured by one of two single-card comparators: one for Ace high, and one for Ace low.  In High Hand rules, straights 
 require special handling because an Ace can be used in a high or low straight.  
          
 For High Hand, identifying the best hand involves sorting the list of candidates in reverse order, which results in the 
